@@ -13,8 +13,9 @@
     <string name="comma_button_text">,</string>
     <string name="equals_button_text">=</string>
     <string name="clear_button_text">C</string>
-    <string name="divide_button_text">÷</string>
+    <string name="divide_button_text">/</string>
     <string name="multiply_button_text">x</string>
     <string name="minus_button_text">-</string>
     <string name="plus_button_text">+</string>
+    <string name="return_button_text">return</string>
 </resources>
