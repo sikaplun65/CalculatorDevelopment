@@ -32,17 +32,17 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <androidx.appcompat.widget.AppCompatButton
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/digit_seven_button"
                 style="@style/digit_button_style"
-                android:text="@string/digit_seven_text"/>
+                android:text="@string/digit_seven_text" />
 
-            <androidx.appcompat.widget.AppCompatButton
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/digit_eight_button"
                 style="@style/digit_button_style"
                 android:text="@string/digit_eight_text" />
 
-            <androidx.appcompat.widget.AppCompatButton
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/digit_nine_button"
                 style="@style/digit_button_style"
                 android:text="@string/digit_nine_text" />
@@ -53,17 +53,17 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <androidx.appcompat.widget.AppCompatButton
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/digit_four_button"
                 style="@style/digit_button_style"
                 android:text="@string/digit_four_text" />
 
-            <androidx.appcompat.widget.AppCompatButton
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/digit_five_button"
                 style="@style/digit_button_style"
                 android:text="@string/digit_five_text" />
 
-            <androidx.appcompat.widget.AppCompatButton
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/digit_six_button"
                 style="@style/digit_button_style"
                 android:text="@string/digit_six_text" />
@@ -74,17 +74,17 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <androidx.appcompat.widget.AppCompatButton
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/digit_one_button"
                 style="@style/digit_button_style"
                 android:text="@string/digit_one_text" />
 
-            <androidx.appcompat.widget.AppCompatButton
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/digit_two_button"
                 style="@style/digit_button_style"
                 android:text="@string/digit_two_text" />
 
-            <androidx.appcompat.widget.AppCompatButton
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/digit_three_button"
                 style="@style/digit_button_style"
                 android:text="@string/digit_three_text" />
@@ -95,28 +95,27 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <androidx.appcompat.widget.AppCompatButton
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/digit_zero_button"
                 style="@style/digit_button_style"
-                android:text="@string/digit_zero_text"
- />
+                android:text="@string/digit_zero_text" />
 
-            <androidx.appcompat.widget.AppCompatButton
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/comma_button"
                 style="@style/digit_button_style"
                 android:text="@string/comma_button_text" />
 
-            <androidx.appcompat.widget.AppCompatButton
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/result_button"
                 android:layout_height="65dp"
-                android:layout_margin="5dp"
-                android:background="#63a91f"
+                android:layout_margin="10dp"
+                android:backgroundTint="#63a91f"
                 android:fontFamily="@font/montserrat_bold"
                 android:text="@string/equals_button_text"
                 android:textColor="@color/white"
                 android:textSize="35sp" />
         </TableRow>
-
+        <!--        android:background="#63a91f"-->
     </TableLayout>
 
     <LinearLayout
@@ -127,48 +126,44 @@
         app:layout_constraintStart_toEndOf="@+id/table_Layout"
         app:layout_constraintTop_toBottomOf="@+id/input_text_edit_text">
 
-        <androidx.appcompat.widget.AppCompatButton
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/clear_button"
             android:layout_width="90dp"
-            android:layout_height="70dp"
-            android:layout_marginStart="15dp"
+            android:layout_height="65dp"
+            android:layout_marginStart="10dp"
             android:layout_marginTop="5dp"
-            android:background="#f34802"
+            android:layout_marginEnd="5dp"
+            android:backgroundTint="#f34802"
             android:fontFamily="@font/montserrat_bold"
             android:text="@string/clear_button_text"
             android:textColor="@color/white"
             android:textSize="30sp" />
 
-        <androidx.appcompat.widget.AppCompatButton
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/return_button"
-            android:text="return"
-            android:textSize="18sp"
-            android:background="#fd8b06"
-            style="@style/operator_button_style" />
+            style="@style/operator_button_style"
+            android:text="@string/return_button_text"
+            android:textSize="12sp" />
 
-        <androidx.appcompat.widget.AppCompatButton
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/divide_button"
-            android:text="@string/divide_button_text"
-            android:background="#fd8b06"
-            style="@style/operator_button_style" />
+            style="@style/operator_button_style"
+            android:text="@string/divide_button_text" />
 
-        <androidx.appcompat.widget.AppCompatButton
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/multiply_button"
-            android:text="@string/multiply_button_text"
-            android:background="#fd8b06"
-            style="@style/operator_button_style" />
+            style="@style/operator_button_style"
+            android:text="@string/multiply_button_text" />
 
-        <androidx.appcompat.widget.AppCompatButton
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/minus_button"
-            android:text="@string/minus_button_text"
-            android:background="#fd8b06"
-            style="@style/operator_button_style" />
+            style="@style/operator_button_style"
+            android:text="@string/minus_button_text" />
 
-        <androidx.appcompat.widget.AppCompatButton
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/plus_button"
-            android:background="#fd8b06"
-            android:text="@string/plus_button_text"
-            style="@style/operator_button_style" />
+            style="@style/operator_button_style"
+            android:text="@string/plus_button_text" />
 
     </LinearLayout>
 

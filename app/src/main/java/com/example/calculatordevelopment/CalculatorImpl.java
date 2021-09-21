@@ -10,7 +10,6 @@ public class CalculatorImpl {
     private String currentOperator;
     private Boolean isCanAddNumber;
     private Boolean isCanAddComma;
-    private int countOperators;
     private double result;
 
     public EditText getInputText() {
@@ -21,31 +20,16 @@ public class CalculatorImpl {
         this.inputText = inputText;
         isCanAddNumber = true;
         isCanAddComma = true;
-        countOperators = 0;
     }
 
     // формирование строки
     private void appendToLast(String str) {
         this.inputText.getText().append(str);
-
-        if (getInput().length() > 2) {
-            // если последний символ не оператор,а предпоследний оператор -> увеличиваем счетчик
-            if (!endsWithOperatore() && penultimateOperatoreCharacter()) {
-                countOperators++;
-            }
-        }
     }
-
-    private boolean penultimateOperatoreCharacter() {
-        // получаем предпоследний символ строки
-        char ch = getInput().substring(inputText.getText().length() - 2).charAt(0);
-        return currentOperator != null && currentOperator.charAt(0) == ch;
-    }
-
 
     public void addArgument(String arg) {
         if (isCanAddNumber) {
-            if (getInput().length() == 0 && arg.equals(",")) {
+            if (getInput().length() == 0 && arg.equals(",") || endsWithOperatore() && arg.equals(",")) {
                 appendToLast("0" + arg);
                 isCanAddComma = false;
             } else if (getInput().length() != 0 && arg.equals("0")) {
@@ -62,11 +46,15 @@ public class CalculatorImpl {
     }
 
     public void addOperator(String arg) {
-        // на данном этапе ограничение в одну операцию
-        if (getInput().length() != 0 && countOperators < 1) {
+        if (getInput().length() != 0) {
             if (endsWithOperatore()) {
                 replace(arg);
             } else {
+                if (currentOperator != null) {
+                    calculateResult();
+                    appendToLast(String.valueOf(result));
+                    isCanAddNumber = false;
+                }
                 appendToLast(arg);
             }
             isCanAddNumber = true;
@@ -82,19 +70,20 @@ public class CalculatorImpl {
             case R.id.clear_button:
                 clearText();
                 isCanAddNumber = true;
+                currentOperator = null;
                 break;
             case R.id.result_button:
-                if(!endsWithOperatore()){
+                if (!endsWithOperatore()&& currentOperator != null) {
                     calculateResult();
                     appendToLast(String.valueOf(result));
                     isCanAddNumber = false;
+                    currentOperator= null;
                 }
                 break;
             case R.id.return_button:
                 removeLastChar(getInput());
                 break;
         }
-        countOperators = 0;
     }
 
     public void clearText() {
@@ -106,8 +95,11 @@ public class CalculatorImpl {
     }
 
     private void removeLastChar(String str) {
-        if (str != null && str.length() > 0){
+        if (str != null && str.length() > 0) {
             inputText.setText(str.substring(0, str.length() - 1));
+        }
+        if(!endsWithOperatore()){
+            currentOperator = null;
         }
     }
 
@@ -137,9 +129,7 @@ public class CalculatorImpl {
 
         clearText();
 
-        if (subStr.length == 2) {
-            result = operate(subStr[0], subStr[1]);
-        }
+        result = operate(subStr[0], subStr[1]);
     }
 
     private double operate(String a, String b) {
