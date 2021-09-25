@@ -10,13 +10,15 @@
     <EditText
         android:id="@+id/input_text_edit_text"
         android:layout_width="match_parent"
-        android:layout_height="75dp"
-        android:layout_margin="@dimen/one_fourth_margin"
+        android:layout_height="@dimen/sixty_five_dp"
+        android:layout_margin="@dimen/fifty_dp"
+        android:layout_marginStart="@dimen/two_hundred_dp"
+        android:layout_marginTop="@dimen/one_hundred_and_twenty_dp"
         android:background="#EFEFEF"
         android:cursorVisible="false"
         android:gravity="right|bottom"
-        android:padding="@dimen/half_margin"
-        android:textSize="45dp"
+        android:padding="@dimen/ten_dp"
+        android:textSize="@dimen/thirty_sp_text_size"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -24,13 +26,13 @@
         android:id="@+id/table_Layout"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:layout_marginTop="85dp"
+        android:layout_marginTop="@dimen/eighty_five_dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/input_text_edit_text">
 
         <TableRow
             android:layout_width="match_parent"
-            android:layout_height="0dp"
+            android:layout_height="@dimen/zero_dp"
             android:layout_weight="1">
 
             <com.google.android.material.button.MaterialButton
@@ -52,7 +54,7 @@
 
         <TableRow
             android:layout_width="match_parent"
-            android:layout_height="0dp"
+            android:layout_height="@dimen/zero_dp"
             android:layout_weight="1">
 
             <com.google.android.material.button.MaterialButton
@@ -74,7 +76,7 @@
 
         <TableRow
             android:layout_width="match_parent"
-            android:layout_height="0dp"
+            android:layout_height="@dimen/zero_dp"
             android:layout_weight="1">
 
             <com.google.android.material.button.MaterialButton
@@ -96,9 +98,9 @@
 
         <TableRow
             android:layout_width="match_parent"
-            android:layout_height="0dp"
+            android:layout_height="@dimen/zero_dp"
             android:layout_weight="1"
-            android:layout_marginBottom="@dimen/one_fourth_margin">
+            android:layout_marginBottom="@dimen/fifty_dp">
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/digit_zero_button"
@@ -113,14 +115,11 @@
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/result_button"
-                android:layout_height="@dimen/button_height"
-                android:layout_marginTop="@dimen/one_fourth_margin"
-                android:layout_marginStart="@dimen/one_fourth_margin"
+                style="@style/digit_button_style"
                 android:backgroundTint="@color/green"
-                android:fontFamily="@font/montserrat_bold"
                 android:text="@string/equals_button_text"
                 android:textColor="@color/white"
-                android:textSize="30sp" />
+                android:textSize="@dimen/thirty_sp_text_size" />
         </TableRow>
 
     </TableLayout>
@@ -129,50 +128,67 @@
         android:id="@+id/operators_button_linear_layout"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:layout_marginTop="85dp"
+        android:layout_marginTop="@dimen/eighty_five_dp"
         android:orientation="vertical"
         app:layout_constraintStart_toEndOf="@+id/table_Layout"
         app:layout_constraintTop_toBottomOf="@+id/input_text_edit_text">
 
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/clear_button"
-            android:layout_width="@dimen/button_wight"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:layout_marginStart="@dimen/half_margin"
-            android:layout_marginTop="@dimen/one_fourth_margin"
-            android:backgroundTint="@color/orange"
-            android:fontFamily="@font/montserrat_bold"
-            android:text="@string/clear_button_text"
-            android:textColor="@color/white"
-            android:textSize="20sp" />
-
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/return_button"
-            android:text="@string/return_button_text"
-            android:textSize="12sp"
-            style="@style/operator_button_style" />
-
-        <com.google.android.material.button.MaterialButton
             android:id="@+id/divide_button"
             android:text="@string/divide_button_text"
-            style="@style/operator_button_style" />
+            android:layout_marginTop="@dimen/fifty_dp"
+            style="@style/operator_button_style_land" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/multiply_button"
             android:text="@string/multiply_button_text"
-            style="@style/operator_button_style" />
+            android:layout_marginTop="@dimen/one_dp"
+            style="@style/operator_button_style_land" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/minus_button"
             android:text="@string/minus_button_text"
-            style="@style/operator_button_style" />
+            android:layout_marginTop="1dp"
+            style="@style/operator_button_style_land"
+            android:textSize="@dimen/twenty_five_sp_text_size"/>
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/plus_button"
             android:text="@string/plus_button_text"
-            android:layout_marginBottom="@dimen/one_fourth_margin"
-            style="@style/operator_button_style" />
+            android:layout_marginTop="@dimen/one_dp"
+            style="@style/operator_button_style_land" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/result_button_linear_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="@dimen/ten_dp"
+        app:layout_constraintStart_toEndOf="@+id/operators_button_linear_layout"
+        app:layout_constraintTop_toBottomOf="@+id/input_text_edit_text">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/clear_button"
+            style="@style/operator_button_style_land"
+            android:layout_marginTop="@dimen/ten_dp"
+            android:text="@string/clear_button_text"
+            android:textSize="@dimen/thirty_sp_text_size" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/return_button"
+            style="@style/operator_button_style_land"
+            android:layout_marginTop="@dimen/one_dp"
+            android:text="@string/return_button_text"
+            android:textSize="@dimen/twelwe_sp_text_size" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/inversion_negative_positive_button"
+            style="@style/operator_button_style_land"
+            android:layout_marginTop="@dimen/one_dp"
+            android:text="@string/minus_plus_text"
+            android:textSize="@dimen/twenty_sp_text_size" />
+
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
