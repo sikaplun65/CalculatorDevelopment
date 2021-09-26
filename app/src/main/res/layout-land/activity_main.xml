@@ -10,13 +10,15 @@
     <EditText
         android:id="@+id/input_text_edit_text"
         android:layout_width="match_parent"
-        android:layout_height="75dp"
-        android:layout_margin="5dp"
+        android:layout_height="@dimen/sixty_five_dp"
+        android:layout_margin="@dimen/fifty_dp"
+        android:layout_marginStart="@dimen/two_hundred_dp"
+        android:layout_marginTop="@dimen/one_hundred_and_twenty_dp"
         android:background="#EFEFEF"
         android:cursorVisible="false"
         android:gravity="right|bottom"
-        android:padding="10dp"
-        android:textSize="45dp"
+        android:padding="@dimen/ten_dp"
+        android:textSize="@dimen/thirty_sp_text_size"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -24,26 +26,26 @@
         android:id="@+id/table_Layout"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:layout_marginTop="85dp"
+        android:layout_marginTop="@dimen/eighty_five_dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/input_text_edit_text">
 
         <TableRow
             android:layout_width="match_parent"
-            android:layout_height="0dp"
+            android:layout_height="@dimen/zero_dp"
             android:layout_weight="1">
 
-            <androidx.appcompat.widget.AppCompatButton
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/digit_seven_button"
                 style="@style/digit_button_style"
                 android:text="@string/digit_seven_text"/>
 
-            <androidx.appcompat.widget.AppCompatButton
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/digit_eight_button"
                 style="@style/digit_button_style"
                 android:text="@string/digit_eight_text" />
 
-            <androidx.appcompat.widget.AppCompatButton
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/digit_nine_button"
                 style="@style/digit_button_style"
                 android:text="@string/digit_nine_text" />
@@ -52,20 +54,20 @@
 
         <TableRow
             android:layout_width="match_parent"
-            android:layout_height="0dp"
+            android:layout_height="@dimen/zero_dp"
             android:layout_weight="1">
 
-            <androidx.appcompat.widget.AppCompatButton
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/digit_four_button"
                 style="@style/digit_button_style"
                 android:text="@string/digit_four_text" />
 
-            <androidx.appcompat.widget.AppCompatButton
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/digit_five_button"
                 style="@style/digit_button_style"
                 android:text="@string/digit_five_text" />
 
-            <androidx.appcompat.widget.AppCompatButton
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/digit_six_button"
                 style="@style/digit_button_style"
                 android:text="@string/digit_six_text" />
@@ -74,20 +76,20 @@
 
         <TableRow
             android:layout_width="match_parent"
-            android:layout_height="0dp"
+            android:layout_height="@dimen/zero_dp"
             android:layout_weight="1">
 
-            <androidx.appcompat.widget.AppCompatButton
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/digit_one_button"
                 style="@style/digit_button_style"
                 android:text="@string/digit_one_text" />
 
-            <androidx.appcompat.widget.AppCompatButton
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/digit_two_button"
                 style="@style/digit_button_style"
                 android:text="@string/digit_two_text" />
 
-            <androidx.appcompat.widget.AppCompatButton
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/digit_three_button"
                 style="@style/digit_button_style"
                 android:text="@string/digit_three_text" />
@@ -96,88 +98,97 @@
 
         <TableRow
             android:layout_width="match_parent"
-            android:layout_height="0dp"
+            android:layout_height="@dimen/zero_dp"
             android:layout_weight="1"
-            android:layout_marginBottom="5dp">
+            android:layout_marginBottom="@dimen/fifty_dp">
 
-            <androidx.appcompat.widget.AppCompatButton
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/digit_zero_button"
                 style="@style/digit_button_style"
                 android:text="@string/digit_zero_text"
- />
+                />
 
-            <androidx.appcompat.widget.AppCompatButton
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/comma_button"
                 style="@style/digit_button_style"
                 android:text="@string/comma_button_text" />
 
-            <androidx.appcompat.widget.AppCompatButton
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/result_button"
-                android:layout_height="65dp"
-                android:layout_margin="5dp"
-                android:background="#63a91f"
-                android:fontFamily="@font/montserrat_bold"
+                style="@style/digit_button_style"
+                android:backgroundTint="@color/green"
                 android:text="@string/equals_button_text"
                 android:textColor="@color/white"
-                android:textSize="35sp" />
+                android:textSize="@dimen/thirty_sp_text_size" />
         </TableRow>
 
     </TableLayout>
 
     <LinearLayout
+        android:id="@+id/operators_button_linear_layout"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:layout_marginTop="85dp"
+        android:layout_marginTop="@dimen/eighty_five_dp"
         android:orientation="vertical"
         app:layout_constraintStart_toEndOf="@+id/table_Layout"
         app:layout_constraintTop_toBottomOf="@+id/input_text_edit_text">
 
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/clear_button"
-            android:layout_width="90dp"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:layout_marginStart="15dp"
-            android:layout_marginTop="5dp"
-            android:background="#f34802"
-            android:fontFamily="@font/montserrat_bold"
-            android:text="@string/clear_button_text"
-            android:textColor="@color/white"
-            android:textSize="20sp" />
-
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/return_button"
-            android:text="@string/return_button_text"
-            android:textSize="18sp"
-            android:background="#fd8b06"
-            style="@style/operator_button_style" />
-
-        <androidx.appcompat.widget.AppCompatButton
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/divide_button"
             android:text="@string/divide_button_text"
-            android:background="#fd8b06"
-            style="@style/operator_button_style" />
+            android:layout_marginTop="@dimen/fifty_dp"
+            style="@style/operator_button_style_land" />
 
-        <androidx.appcompat.widget.AppCompatButton
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/multiply_button"
             android:text="@string/multiply_button_text"
-            android:background="#fd8b06"
-            style="@style/operator_button_style" />
+            android:layout_marginTop="@dimen/one_dp"
+            style="@style/operator_button_style_land" />
 
-        <androidx.appcompat.widget.AppCompatButton
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/minus_button"
             android:text="@string/minus_button_text"
-            android:background="#fd8b06"
-            style="@style/operator_button_style" />
+            android:layout_marginTop="1dp"
+            style="@style/operator_button_style_land"
+            android:textSize="@dimen/twenty_five_sp_text_size"/>
 
-        <androidx.appcompat.widget.AppCompatButton
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/plus_button"
-            android:background="#fd8b06"
             android:text="@string/plus_button_text"
-            android:layout_marginBottom="5dp"
-            style="@style/operator_button_style" />
-
+            android:layout_marginTop="@dimen/one_dp"
+            style="@style/operator_button_style_land" />
     </LinearLayout>
 
+    <LinearLayout
+        android:id="@+id/result_button_linear_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="@dimen/ten_dp"
+        app:layout_constraintStart_toEndOf="@+id/operators_button_linear_layout"
+        app:layout_constraintTop_toBottomOf="@+id/input_text_edit_text">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/clear_button"
+            style="@style/operator_button_style_land"
+            android:layout_marginTop="@dimen/ten_dp"
+            android:text="@string/clear_button_text"
+            android:textSize="@dimen/thirty_sp_text_size" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/return_button"
+            style="@style/operator_button_style_land"
+            android:layout_marginTop="@dimen/one_dp"
+            android:text="@string/return_button_text"
+            android:textSize="@dimen/twelwe_sp_text_size" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/inversion_negative_positive_button"
+            style="@style/operator_button_style_land"
+            android:layout_marginTop="@dimen/one_dp"
+            android:text="@string/minus_plus_text"
+            android:textSize="@dimen/twenty_sp_text_size" />
+
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
