@@ -1,6 +1,5 @@
 package com.example.calculatordevelopment;
 
-
 import android.os.Parcel;
 import android.os.Parcelable;
 
@@ -37,11 +36,20 @@ public class Calculator extends Digit implements Parcelable {
 
     public boolean onDigit(int arg) {
         if (currentOperator == Operation.NONE) {
-            if (!firstOperand.canEdit)
+            if (!firstOperand.canEdit){
                 return false;
-            firstOperand.push(arg);
+            }
+            if(firstOperand.getSize() == 0 && arg == 0){
+                firstOperand.setFractional();
+            }else{
+                firstOperand.push(arg);
+            }
         } else {
-            secondOperand.push(arg);
+            if(secondOperand.getSize() == 0 && arg == 0){
+                secondOperand.setFractional();
+            }else{
+                secondOperand.push(arg);
+            }
         }
         return true;
     }
@@ -73,16 +81,16 @@ public class Calculator extends Digit implements Parcelable {
         double result = 0.;
         switch (currentOperator) {
             case PLUS:
-                result = firstOperand.valueDigit() + secondOperand.valueDigit();
+                result = firstOperand.getValueDigit() + secondOperand.getValueDigit();
                 break;
             case MULTIPLY:
-                result = firstOperand.valueDigit() * secondOperand.valueDigit();
+                result = firstOperand.getValueDigit() * secondOperand.getValueDigit();
                 break;
             case MINUS:
-                result = firstOperand.valueDigit() - secondOperand.valueDigit();
+                result = firstOperand.getValueDigit() - secondOperand.getValueDigit();
                 break;
             case DIVIDE:
-                result = firstOperand.valueDigit() / secondOperand.valueDigit();
+                result = firstOperand.getValueDigit() / secondOperand.getValueDigit();
                 break;
             default:
                 break;
@@ -121,23 +129,31 @@ public class Calculator extends Digit implements Parcelable {
     }
 
     public String inversionPositiveDigitToNegativeDigitAndViceVersa() {
-
         if (currentOperator != Operation.NONE) {
             if (secondOperand.getValue().length() != 0 && currentOperator != Operation.MINUS && currentOperator != Operation.PLUS) {
-                secondOperand.setValue(String.valueOf(-Double.parseDouble(secondOperand.getValue())));
+                secondOperand.setValue(String.valueOf(-secondOperand.getValueDigit()));
                 return getStr();
             } else if (secondOperand.getValue().length() != 0 && currentOperator == Operation.PLUS) {
                 currentOperator = Operation.MINUS;
-                return firstOperand.getValue() + "-" + secondOperand.getValue();
+                return getStr();
             } else {
+                if (currentOperator == Operation.MINUS && !secondOperand.isNegative()){
+                    currentOperator = Operation.PLUS;
+                    getStr();
+                }else if (currentOperator == Operation.MINUS && secondOperand.isNegative()){
+                    currentOperator = Operation.PLUS;
+                    secondOperand.setValue(String.valueOf(-secondOperand.getValueDigit()));
+                    getStr();
+                }
                 return getStr();
             }
-        } else if (firstOperand.getValue().length() != 0) {
-
-            firstOperand.setValue(String.valueOf(-Double.parseDouble(firstOperand.getValue())));
+        } else {
+            if(firstOperand.getValueDigit() == 0){
+                return getStr();
+            }
+            firstOperand.setValue(String.valueOf(-firstOperand.getValueDigit()));
             return getStr();
         }
-        return getStr();
     }
 
     public String getStr() {
