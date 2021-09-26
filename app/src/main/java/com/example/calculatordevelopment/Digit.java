@@ -40,9 +40,13 @@ public class Digit {
         return value.contains(".");
     }
 
-    protected double valueDigit() {
+    protected boolean isNegative(){return getValueDigit() < 0;}
+
+    protected double getValueDigit() {
         return Double.parseDouble(value);
     }
+
+    protected int getSize(){ return getValue().length();}
 
 
     protected void reset() {

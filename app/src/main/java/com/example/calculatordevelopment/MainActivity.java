@@ -23,9 +23,9 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         inputText = findViewById(R.id.input_text_edit_text);
-        if (savedInstanceState == null) {
+        if(savedInstanceState == null){
             calculator = new Calculator();
-        } else {
+        }else {
             calculator = savedInstanceState.getParcelable(CALCULATOR_STR);
         }
 
@@ -61,40 +61,7 @@ public class MainActivity extends AppCompatActivity {
 
         int[] actionsIds = new int[]{R.id.minus_button, R.id.plus_button, R.id.divide_button, R.id.multiply_button, R.id.comma_button};
 
-        @SuppressLint("NonConstantResourceId") View.OnClickListener actionButtonOnclickListener = view -> {
-            if (!calculator.getFirstOperand().getValue().isEmpty() || view.getId() == R.id.comma_button) {
-                if (endsWithOperatore() && calculator.getSecondOperand().getValue().isEmpty()) {
-                    if (view.getId() != R.id.comma_button)
-                        deleteLast();
-                }
-                boolean changed = false;
-                switch (view.getId()) {
-                    case R.id.minus_button:
-                        calculateAndShowResult();
-                        changed = calculator.onOperator(Calculator.Operation.MINUS);
-                        break;
-                    case R.id.plus_button:
-                        calculateAndShowResult();
-                        changed = calculator.onOperator(Calculator.Operation.PLUS);
-                        break;
-                    case R.id.divide_button:
-                        calculateAndShowResult();
-                        changed = calculator.onOperator(Calculator.Operation.DIVIDE);
-                        break;
-                    case R.id.multiply_button:
-                        calculateAndShowResult();
-                        changed = calculator.onOperator(Calculator.Operation.MULTIPLY);
-                        break;
-                    case R.id.comma_button:
-                        changed = calculator.onOperator(Calculator.Operation.COMMA);
-                        break;
-                    default:
-                }
-                if (changed)
-                    inputText.getText().append(((Button) view).getText().toString());
-            }
-
-        };
+        View.OnClickListener actionButtonOnclickListener = this::onClickOperator;
 
         for (int actionsId : actionsIds) {
             findViewById(actionsId).setOnClickListener(actionButtonOnclickListener);
@@ -112,6 +79,10 @@ public class MainActivity extends AppCompatActivity {
             boolean changed = calculator.onDigit(Integer.parseInt(((TextView) view).getText().toString()));
             if (changed) {
                 inputText.getText().append(((Button) view).getText().toString());
+                if(calculator.getFirstOperand().getSize() != 0 && calculator.getFirstOperand().getValueDigit() == 0
+                        || calculator.getSecondOperand().getSize() != 0 && calculator.getSecondOperand().getValueDigit() == 0){
+                    inputText.getText().append(",");
+                }
             }
         };
 
@@ -134,12 +105,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void calculateAndShowResult() {
-        if (!endsWithOperatore() && !calculator.getSecondOperand().getValue().isEmpty()) {
+        if (!endsWithOperatore() && !calculator.getSecondOperand().getValue().isEmpty()){
             inputText.setText(String.valueOf(calculator.calculatedResult()));
         }
     }
 
-    private void deleteLast() {
+    private void deleteLast(){
         String t = inputText.getText().toString();
         inputText.setText(t.substring(0, t.length() - 1));
     }
@@ -150,4 +121,38 @@ public class MainActivity extends AppCompatActivity {
         super.onSaveInstanceState(outState);
     }
 
+    @SuppressLint("NonConstantResourceId")
+    private void onClickOperator(View view) {
+        if (!calculator.getFirstOperand().getValue().isEmpty() || view.getId() == R.id.comma_button) {
+            if (endsWithOperatore() && calculator.getSecondOperand().getValue().isEmpty()) {
+                if (view.getId() != R.id.comma_button)
+                    deleteLast();
+            }
+            boolean changed = false;
+            switch (view.getId()) {
+                case R.id.minus_button:
+                    calculateAndShowResult();
+                    changed = calculator.onOperator(Calculator.Operation.MINUS);
+                    break;
+                case R.id.plus_button:
+                    calculateAndShowResult();
+                    changed = calculator.onOperator(Calculator.Operation.PLUS);
+                    break;
+                case R.id.divide_button:
+                    calculateAndShowResult();
+                    changed = calculator.onOperator(Calculator.Operation.DIVIDE);
+                    break;
+                case R.id.multiply_button:
+                    calculateAndShowResult();
+                    changed = calculator.onOperator(Calculator.Operation.MULTIPLY);
+                    break;
+                case R.id.comma_button:
+                    changed = calculator.onOperator(Calculator.Operation.COMMA);
+                    break;
+                default:
+            }
+            if (changed)
+                inputText.getText().append(((Button) view).getText().toString());
+        }
+    }
 }
