@@ -4,14 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@drawable/star_night"
     tools:context=".MainActivity">
 
     <EditText
         android:id="@+id/input_text_edit_text"
         android:layout_width="match_parent"
         android:layout_height="@dimen/sixty_five_dp"
-        android:layout_margin="@dimen/fifty_dp"
+        android:layout_margin="@dimen/five_dp"
         android:layout_marginStart="@dimen/two_hundred_dp"
         android:layout_marginTop="@dimen/one_hundred_and_twenty_dp"
         android:background="#EFEFEF"
@@ -100,7 +99,7 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/zero_dp"
             android:layout_weight="1"
-            android:layout_marginBottom="@dimen/fifty_dp">
+            android:layout_marginBottom="@dimen/five_dp">
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/digit_zero_button"
@@ -136,7 +135,7 @@
         <com.google.android.material.button.MaterialButton
             android:id="@+id/divide_button"
             android:text="@string/divide_button_text"
-            android:layout_marginTop="@dimen/fifty_dp"
+            android:layout_marginTop="@dimen/five_dp"
             style="@style/operator_button_style_land" />
 
         <com.google.android.material.button.MaterialButton
@@ -162,32 +161,40 @@
     <LinearLayout
         android:id="@+id/result_button_linear_layout"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:orientation="vertical"
-        android:layout_marginTop="@dimen/ten_dp"
+        android:layout_marginTop="@dimen/eighty_five_dp"
         app:layout_constraintStart_toEndOf="@+id/operators_button_linear_layout"
         app:layout_constraintTop_toBottomOf="@+id/input_text_edit_text">
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/clear_button"
             style="@style/operator_button_style_land"
-            android:layout_marginTop="@dimen/ten_dp"
+            android:layout_marginTop="@dimen/five_dp"
             android:text="@string/clear_button_text"
-            android:textSize="@dimen/thirty_sp_text_size" />
+ />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/return_button"
             style="@style/operator_button_style_land"
-            android:layout_marginTop="@dimen/one_dp"
             android:text="@string/return_button_text"
             android:textSize="@dimen/twelwe_sp_text_size" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/inversion_negative_positive_button"
             style="@style/operator_button_style_land"
-            android:layout_marginTop="@dimen/one_dp"
             android:text="@string/minus_plus_text"
-            android:textSize="@dimen/twenty_sp_text_size" />
+/>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/settings_button"
+            style="@style/operator_button_style_land"
+            android:layout_marginTop="@dimen/one_dp"
+            android:backgroundTint="@color/maroon"
+            android:text="settings"
+            android:textSize="@dimen/ten_sp_text_size"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/table_Layout" />
 
     </LinearLayout>
 

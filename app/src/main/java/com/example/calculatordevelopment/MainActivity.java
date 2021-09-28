@@ -1,24 +1,47 @@
 package com.example.calculatordevelopment;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-
-import java.math.BigDecimal;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
 public class MainActivity extends AppCompatActivity {
+    private final int  LIGHT = 301;
+    private final int DARK = 201;
+    private final int CHANGE_THEME = 101;
+
     private final String CALCULATOR_STR = "CALCULATOR_STR";
     private Calculator calculator;
     private EditText inputText;
+    private int curTheme = LIGHT;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        //SharedPreferences.getCurrentTheme();
+        if(savedInstanceState != null){
+            if(curTheme == LIGHT){
+                setTheme(R.style.my_light_theme);
+            }else if(curTheme == DARK){
+                setTheme(R.style.my_dark_theme);
+            }
+        }
+
+        if(curTheme == LIGHT){
+            setTheme(R.style.my_light_theme);
+        }else if(curTheme == DARK){
+            setTheme(R.style.my_dark_theme);
+        }
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
@@ -32,8 +55,31 @@ public class MainActivity extends AppCompatActivity {
         inputDigit();
         inputOperator();
         showResult();
-
+        сhooseTheme();
     }
+
+    private void сhooseTheme() {
+        findViewById(R.id.settings_button).setOnClickListener(v ->{
+            Intent intent = new Intent(this,ChangeThemeActivity.class);
+            startActivityForResult(intent, CHANGE_THEME);
+        });
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if(requestCode == CHANGE_THEME && resultCode == RESULT_OK) {
+            String theme = data.getExtras().getString("theme");
+            if("light".equals(theme)){
+                curTheme = LIGHT;
+            }else if("dark".equals(theme)){
+                curTheme = DARK;
+            }
+            recreate();
+        }
+    }
+
 
     private void showResult() {
         findViewById(R.id.clear_button).setOnClickListener(v -> {
@@ -76,6 +122,7 @@ public class MainActivity extends AppCompatActivity {
         };
 
         View.OnClickListener numberButtonClickListener = view -> {
+
             boolean changed = calculator.onDigit(Integer.parseInt(((TextView) view).getText().toString()));
             if (changed) {
                 inputText.getText().append(((Button) view).getText().toString());

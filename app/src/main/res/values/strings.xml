@@ -19,4 +19,6 @@
     <string name="plus_button_text">+</string>
     <string name="return_button_text">Return</string>
     <string name="minus_plus_text">-/+</string>
+    <string name="linght_theme_text_button">светлая тема приложения</string>
+    <string name="dark_theme_text_button">темная тема приложения</string>
 </resources>
